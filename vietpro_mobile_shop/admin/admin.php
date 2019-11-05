@@ -1,3 +1,10 @@
+<?php 
+if(!defined('SECURITY'))
+{
+	die('BẠN KHÔNG CÓ QUYỀN');
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +43,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Admin <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Hồ sơ</a></li>
-									<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Đăng xuất</a></li>
+									<li><a href="logout.php"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Đăng xuất</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -79,10 +86,15 @@ if(isset($_GET['page_layout'])){
 		case 'product': include_once('product.php'); break;
 		case 'add_product': include_once('add_product.php'); break;
 		case 'edit_product': include_once('edit_product.php'); break;
+		default:
+		include_once('sub_admin.php');
+		break;
+
 	}
 }else{
 	include_once('sub_admin.php');
 }
+
 
 ?>
 
