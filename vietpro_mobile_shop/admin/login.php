@@ -1,3 +1,8 @@
+<?php
+if(!defined('SECURITY')){
+	die("Bạn không có quyền truy cập file này");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,12 +28,16 @@
 		$mail=$_POST['mail'];
 		$pass=$_POST['pass'];
 
-		if($mail=='admin@gmail.com'&&$pass=='123456')
+		$sql = "SELECT * FROM user
+		WHERE user_mail='$mail'
+		AND user_pass='$pass'";
+		$query = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($query);
+		if($row > 0)
 		{
 			$_SESSION['mail']=$mail;
 			$_SESSION['pass']=$pass;
 			header('location:index.php');
-			
 		}
 		else {
 			$error='<div class="alert alert-danger">Tài khoản không hợp lệ !</div>';
